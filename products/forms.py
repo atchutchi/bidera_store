@@ -17,5 +17,9 @@ class ProductForm(forms.ModelForm):
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
 
         self.fields['category'].choices = friendly_names
+        # Adds a placeholder to the 'quantity_per_kg' field if it exists in the form.
+        if 'quantity_per_kg' in self.fields:
+            self.fields['quantity_per_kg'].widget.attrs['placeholder'] = 'E.g., 0.5 for 500g'
+
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-black rounded-0'
