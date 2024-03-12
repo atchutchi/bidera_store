@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load wishlist_tags %}
 
 {% block page_header %}
 <div class="container header-container">
@@ -54,13 +55,12 @@
                 <p class="small"><strong>Quantity per Kg:</strong> {{ product.quantity_per_kg }}</p>
                 {% endif %}
                 <!-- Wishlist button - Add or remove from wishlist -->
-                <!-- Check if the product is already in the user's wishlist -->
                 {% if user.is_authenticated %}
-                    {% if product in user_wishlist %}
-                        <a href="{% url 'wishlist_remove' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
-                    {% else %}
-                        <a href="{% url 'wishlist_add' product.id %}" class="btn btn-success">Add to Wishlist</a>
-                    {% endif %}
+                {% if product|in_user_wishlist:user %}
+                    <a href="{% url 'wishlist_remove' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
+                {% else %}
+                    <a href="{% url 'wishlist_add' product.id %}" class="btn btn-success">Add to Wishlist</a>
+                {% endif %}
                 {% endif %}
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
