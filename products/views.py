@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Product, Category
+from wishlist.models import WishlistItem
 from .forms import ProductForm
 
 # Create your views here.
@@ -136,3 +137,21 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
+
+
+@login_required
+def add_to_wishlist(request, product_id):
+    """View para adicionar um produto à lista de desejos"""
+    product = get_object_or_404(Product, pk=product_id)
+    WishlistItem.objects.create(user=request.user, product=product)
+    messages.success(request, 'Produto adicionado à lista de desejos!')
+    return redirect(reverse('product_detail', args=[product_id]))
+
+@login_required
+def remove_from_wishlist(request, product_id):
+    """View para remover um produto da lista de desejos"""
+    product = get_object_or_404(Product, pk=product_id)
+    wishlist_item = WishlistItem.objects.filter(user=request.user, product=product)
+    wishlist_item.delete()
+    messages.success(request, 'Produto removido da lista de desejos.')
+    return redirect(reverse('product_detail', args=[product_id]))
