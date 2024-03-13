@@ -26,7 +26,10 @@ SECRET_KEY = 'django-insecure-)bhha!ybo5wdhlm0y!bcvnak@&ax&tja7q9(rh@r@k&hgqb6p7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu108.gitpod.io',]
+ALLOWED_HOSTS = [
+    '8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu108.gitpod.io',
+    '8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu110.gitpod.io',
+    ]
 
 
 # Application definition
