@@ -57,10 +57,19 @@
                 
                 <!-- Wishlist button - Add or remove from wishlist -->
                 {% if user.is_authenticated %}
-                {% if product|in_user_wishlist:user %}
-                    <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
-                {% else %}
-                    <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-success">Add to Wishlist</a>
+                <div class="wishlist-heart-icon">
+                    {% if product|in_user_wishlist:user %}
+                        <!-- Heart icon for products already in wishlist. Click to remove from wishlist. -->
+                        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="wishlist-toggle">
+                            <i class="fas fa-heart filled-heart"></i>
+                        </a>
+                    {% else %}
+                        <!-- Outline heart icon for products not in wishlist. Click to add to wishlist. -->
+                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="wishlist-toggle">
+                            <i class="far fa-heart"></i>
+                        </a>
+                    {% endif %}
+                </div>
                 {% endif %}
 
                 {% endif %}

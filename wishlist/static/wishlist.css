@@ -1,0 +1,12 @@
+.wishlist-icon a {
+    font-size: 24px;
+    color: #000; /* Default color for the icon */
+}
+
+.wishlist-icon a:hover {
+    color: red; /* Color change on hover */
+}
+
+.wishlist-icon a.remove {
+    color: red; /* Wishlist item is added, so the heart is filled and red */
+}
