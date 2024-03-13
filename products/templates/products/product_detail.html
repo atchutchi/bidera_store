@@ -54,13 +54,15 @@
                 {% if product.quantity_per_kg %}
                 <p class="small"><strong>Quantity per Kg:</strong> {{ product.quantity_per_kg }}</p>
                 {% endif %}
+                
                 <!-- Wishlist button - Add or remove from wishlist -->
                 {% if user.is_authenticated %}
                 {% if product|in_user_wishlist:user %}
-                    <a href="{% url 'wishlist_remove' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
+                    <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
                 {% else %}
-                    <a href="{% url 'wishlist_add' product.id %}" class="btn btn-success">Add to Wishlist</a>
+                    <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-success">Add to Wishlist</a>
                 {% endif %}
+
                 {% endif %}
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
