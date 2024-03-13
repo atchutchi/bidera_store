@@ -2,6 +2,10 @@
 {% load static %}
 {% load wishlist_tags %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'wishlist/css/wishlist.css' %}">
+{% endblock %}
+
 {% block page_header %}
 <div class="container header-container">
     <div class="row">
@@ -43,6 +47,29 @@
                 {% else %}
                 <small class="text-muted">No Rating</small>
                 {% endif %}
+
+                <!-- Display quantity_per_kg if available -->
+                {% if product.quantity_per_kg %}
+                <p class="small"><strong>Quantity per Kg:</strong> {{ product.quantity_per_kg }}</p>
+                {% endif %}
+
+                <!-- Wishlist button - Add or remove from wishlist -->
+                <!-- Wishlist heart icon container -->
+                {% if user.is_authenticated %}
+                <div class="wishlist-heart-container">
+                    {% if product|in_user_wishlist:user %}
+                        <!-- Filled heart icon -->
+                        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="wishlist-heart filled">
+                            <i class="fas fa-heart"></i>
+                        </a>
+                    {% else %}
+                        <!-- Empty heart icon -->
+                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="wishlist-heart">
+                            <i class="far fa-heart"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                {% endif %}
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'edit_product' product.id %}">Edit</a> | 
@@ -50,29 +77,7 @@
                 </small>
                 {% endif %}
                 <p class="mt-3">{{ product.description }}</p>
-                <!-- Display quantity_per_kg if available -->
-                {% if product.quantity_per_kg %}
-                <p class="small"><strong>Quantity per Kg:</strong> {{ product.quantity_per_kg }}</p>
-                {% endif %}
-                
-                <!-- Wishlist button - Add or remove from wishlist -->
-                {% if user.is_authenticated %}
-                <div class="wishlist-heart-icon">
-                    {% if product|in_user_wishlist:user %}
-                        <!-- Heart icon for products already in wishlist. Click to remove from wishlist. -->
-                        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="wishlist-toggle">
-                            <i class="fas fa-heart filled-heart"></i>
-                        </a>
-                    {% else %}
-                        <!-- Outline heart icon for products not in wishlist. Click to add to wishlist. -->
-                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="wishlist-toggle">
-                            <i class="far fa-heart"></i>
-                        </a>
-                    {% endif %}
-                </div>
-                {% endif %}
 
-                {% endif %}
                 <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">

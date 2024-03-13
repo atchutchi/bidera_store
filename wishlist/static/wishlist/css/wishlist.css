@@ -1,0 +1,16 @@
+/* Wishlist heart icon container positioning */
+.wishlist-heart-container {
+    z-index: 1; /* Ensure it's above other elements */
+}
+
+/* Wishlist heart icon styling */
+.wishlist-heart {
+    color: #cccccc; /* Default color for empty heart */
+    font-size: 1.5rem; /* Adjust size as needed */
+    transition: color 0.3s;
+}
+
+/* When the heart icon is filled (item is in the wishlist) */
+.wishlist-heart.filled {
+    color: red; /* Change to desired filled color */
+}
