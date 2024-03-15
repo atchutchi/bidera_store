@@ -29,6 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu108.gitpod.io',
     '8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu110.gitpod.io',
+    '8000-atchutchi-biderastore-csjh9ngq7lp.ws-eu109.gitpod.io',
     ]
 
 

@@ -121,7 +121,7 @@
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
 <script type="text/javascript">
-    // Update and remove item scripts adapted for no size logic
+    // Update and remove item scripts
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();

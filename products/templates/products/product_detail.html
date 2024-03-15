@@ -54,22 +54,25 @@
                 {% endif %}
 
                 <!-- Wishlist button - Add or remove from wishlist -->
-                <!-- Wishlist heart icon container -->
-                {% if user.is_authenticated %}
+                <!-- Wishlist Heart Icon -->
                 <div class="wishlist-heart-container">
-                    {% if product|in_user_wishlist:user %}
-                        <!-- Filled heart icon -->
-                        <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="wishlist-heart filled">
-                            <i class="fas fa-heart"></i>
-                        </a>
+                    {% if user.is_authenticated %}
+                        {% if product|in_user_wishlist:user %}
+                            <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart filled">
+                                <i class="fas fa-heart"></i>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart">
+                                <i class="far fa-heart"></i>
+                            </a>
+                        {% endif %}
                     {% else %}
-                        <!-- Empty heart icon -->
-                        <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="wishlist-heart">
+                        <a href="{% url 'account_login' %}">
                             <i class="far fa-heart"></i>
                         </a>
                     {% endif %}
                 </div>
-                {% endif %}
+
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'edit_product' product.id %}">Edit</a> | 
@@ -124,5 +127,6 @@
 
 {% block postloadjs %}
 {{ block.super }}
+
 {% include 'products/includes/quantity_input_script.html' %}
 {% endblock %}

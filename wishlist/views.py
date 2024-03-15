@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from products.models import Product
 from .models import WishlistItem
+from django.http import JsonResponse
 
 @login_required
 def view_wishlist(request):
@@ -30,3 +31,21 @@ def remove_from_wishlist(request, wishlist_item_id):
     wishlist_item.delete()
     messages.success(request, 'Item removed from your wishlist.')
     return redirect(request.META.get('HTTP_REFERER', 'wishlist:view_wishlist'))
+
+
+@login_required
+def toggle_wishlist(request, product_id):
+    """Toggle the wishlist status for a product."""
+    product = get_object_or_404(Product, pk=product_id)
+    wishlist_item, created = WishlistItem.objects.get_or_create(
+        user=request.user, 
+        product=product
+    )
+    
+    if created:
+        messages.success(request, f'{product.name} has been added to your wishlist.')
+    else:
+        wishlist_item.delete()
+        messages.success(request, f'{product.name} has been removed from your wishlist.')
+    
+    return redirect(request.META.get('HTTP_REFERER', 'product_detail'))
