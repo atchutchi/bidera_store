@@ -1,0 +1,30 @@
+#contact-form .form-control {
+    color: #000;
+    border-radius: 0;
+    border: 1px solid #000;
+}
+
+#contact-form input::placeholder {
+    color: #aab7c4;
+}
+
+#contact-form button[type="submit"] {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#contact-form button[type="submit"]:hover {
+    background-color: #222;
+    border-color: #222;
+}
+
+#contact-form .crispy-form {
+    max-height: 416px; /* Adjust the height as per your layout */
+    overflow-y: auto;
+}
