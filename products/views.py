@@ -18,6 +18,7 @@ def all_products(request):
     categories = None
     sort = None
     direction = None
+    products_in_wishlist = []
 
     if request.GET:
         if 'sort' in request.GET:
@@ -48,11 +49,11 @@ def all_products(request):
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
         
+        products_in_wishlist = []
+        
         if request.user.is_authenticated:
             wishlist_items = WishlistItem.objects.filter(user=request.user)
             products_in_wishlist = [item.product.id for item in wishlist_items]
-        else:
-            products_in_wishlist = []
 
     current_sorting = f'{sort}_{direction}'
 
