@@ -57,6 +57,11 @@ INSTALLED_APPS = [
 
     # Other
     'crispy_forms',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -111,6 +116,10 @@ AUTHENTICATION_BACKENDS = [
 
 
 SITE_ID = 1
+
+
+LOGIN_REDIRECT_URL = 'home'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
