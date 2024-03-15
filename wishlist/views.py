@@ -48,4 +48,4 @@ def toggle_wishlist(request, product_id):
         wishlist_item.delete()
         messages.success(request, f'{product.name} has been removed from your wishlist.')
     
-    return redirect(request.META.get('HTTP_REFERER', 'product_detail'))
+    return redirect(request.META.get('HTTP_REFERER', 'products:all_products'))
