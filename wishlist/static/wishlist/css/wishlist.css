@@ -1,12 +1,17 @@
 /* Wishlist.css */
 .wishlist-heart-container {
-    z-index: 1; /* Ensure it's above other elements */
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.wishlist-heart, .wishlist-heart i {
+    cursor: pointer;
+    font-size: 1.5rem; /* icon size */
+    transition: color 0.2s ease-in-out; /* Smoothing color transition*/
 }
 
 .wishlist-heart {
     color: #e2e0e0; /* Default color for empty heart */
-    font-size: 1.5rem; /* Adjust size as needed */
-    transition: color 0.3s;
 }
 
 .wishlist-heart.filled,
@@ -14,6 +19,7 @@
     color: red; /* Change to desired filled color */
 }
 
-.wishlist-heart i {
-    cursor: pointer;
+
+.wishlist-heart.filled, .wishlist-heart.filled i {
+    color: #d10000; /* Heart color when completed (wishlist) */
 }

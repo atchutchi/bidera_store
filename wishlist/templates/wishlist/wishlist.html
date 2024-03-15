@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block extra_css %}
+<!-- Link to the wishlist-specific CSS for custom styling -->
 <link rel="stylesheet" href="{% static 'wishlist/css/wishlist.css' %}">
 {% endblock %}
 
@@ -23,19 +24,33 @@
             <hr>
         </div>
     </div>
+    <!-- Check if there are items in the wishlist -->
     {% if wishlist_items %}
         <div class="row">
+            <!-- Loop through each item in the wishlist -->
             {% for item in wishlist_items %}
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
+                            <!-- Product image -->
                             <img src="{{ item.product.image.url }}" class="card-img" alt="{{ item.product.name }}">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
+                                <!-- Product name -->
                                 <h5 class="card-title">{{ item.product.name }}</h5>
+                                <!-- Product description -->
                                 <p class="card-text">{{ item.product.description }}</p>
+                                <!-- Product price -->
                                 <p class="card-text"><small class="text-muted">${{ item.product.price }}</small></p>
+                                <!-- Form to add the product directly to the shopping bag -->
+                                <form class="form" action="{% url 'add_to_bag' item.product.id %}" method="POST" style="display: inline-block;">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="1">
+                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    <button type="submit" class="btn btn-black">Add to Bag</button>
+                                </form>
+                                <!-- Link to remove the item from the wishlist -->
                                 <a href="{% url 'wishlist:remove_from_wishlist' item.id %}" class="btn btn-danger">Remove</a>
                             </div>
                         </div>
@@ -44,6 +59,7 @@
             {% endfor %}
         </div>
     {% else %}
+        <!-- Message displayed if the wishlist is empty -->
         <p>Your wishlist is empty. Start adding your favorite products now!</p>
     {% endif %}
 </div>
