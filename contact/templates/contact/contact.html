@@ -53,5 +53,14 @@
 
 {% block postloadjs %}
 {{ block.super }}
-<!-- Any additional JavaScript can be included here -->
+<script>
+// Check if the alert box exists on the page
+var alertBox = document.querySelector('.alert-dismissible');
+if (alertBox) {
+    // Use setTimeout to hide the alert box after 2 seconds (2000 milliseconds)
+    setTimeout(function() {
+        alertBox.style.display = 'none';
+    }, 2000);
+}
+</script>
 {% endblock %}
