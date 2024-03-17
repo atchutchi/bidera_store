@@ -1,39 +1,152 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Bidera Store
 
-Welcome,
+## Overview
+Welcome to Bidera Store, your one-stop online shop for fresh and high-quality food products ranging from vegetables, beef, pork, goat meat, seafood, rice, fish, and much more. Our platform is designed to provide a seamless and convenient shopping experience, allowing customers to purchase products by quantity and enjoy home delivery services.
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+[Here is the live version of the project](#)
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+![Bidera Store Responsive Mockup](./static/assets/img/readme/bidera_store_mockup.png)
 
-## Codeanywhere Reminders
+## Strategy
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+**Project Objectives**
+Bidera Store aims to revolutionize the way people shop for food online by offering a wide selection of fresh products, customizable quantities, and efficient home delivery. Our goal is to ensure that every household has access to quality food products without the hassle of visiting physical stores.
 
-`python3 -m http.server`
+## User Stories
+### USER STORY: Online Shopping
+As a **customer**, I can **browse through various food products** so that **I can select and purchase them online.**
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+#### Acceptance Criteria
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+- The platform must display a wide range of food products with detailed descriptions and prices.
+- Customers should be able to select the quantity of products they wish to purchase.
+- The shopping cart system must accurately reflect the items added by the customer.
 
-`http_server`
+#### Tasks
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+- [x] Implement a product listing page with categories and filters.
+- [x] Develop a dynamic shopping cart system.
+- [x] Create a secure checkout process.
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
+### USER STORY: Home Delivery
+As a **customer**, I can **choose home delivery for my orders** so that **I receive my purchases without leaving my home.**
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+#### Acceptance Criteria
 
-To log into the Heroku toolbelt CLI:
+- The platform must offer an option to choose home delivery during the checkout process.
+- Customers should be provided with estimated delivery times and tracking information.
+- The delivery service must cover a wide geographical area to accommodate various customers.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+#### Tasks
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+- [x] Integrate a home delivery option in the checkout process.
+- [x] Partner with reliable delivery services.
+- [x] Implement a system to provide customers with delivery updates.
 
----
+## Skeleton 
 
-Happy coding!
+### Database Schema
+
+The database schema of Bidera Store is designed to efficiently manage products, orders, and deliveries. The schema includes tables for `Products`, `Orders`, `OrderItems`, `Users`, and `DeliveryInformation`.
+
+![Database Schema Diagram](./static/assets/img/readme/database_schema.png)
+
+### Models
+
+Our application utilizes Django models to represent and interact with the database. Below are key models used in Bidera Store:
+
+- **Product Model**: Stores information about the food products available for purchase.
+- **Order Model**: Manages customer orders and associates them with users.
+- **DeliveryInformation Model**: Contains delivery details for each order.
+
+## Surface
+
+### Wireframes
+
+Wireframes were created to plan the layout of key pages within Bidera Store, focusing on usability and a seamless shopping experience.
+
+[View Wireframes](#)
+
+## Features and Testing
+
+### Feature: Product Browsing and Selection
+![Product Page](./static/assets/img/readme/product_page.png)
+**Testing**: This feature was tested across multiple devices and browsers to ensure products are displayed correctly and can be added to the shopping cart.
+
+### Feature: Secure Checkout Process
+![Checkout Page](./static/assets/img/readme/checkout_page.png)
+**Testing**: The checkout process was rigorously tested to ensure security and accuracy in order processing.
+
+## Testing and Troubleshooting
+
+### Resolving NoReverseMatch Error for 'wishlist'
+
+**Problem Description:**  
+The application threw a NoReverseMatch error stating "Reverse for 'wishlist' not found. 'wishlist' is not a valid view function or pattern name." This error indicates that Django's URL dispatcher is unable to find a URL pattern named 'wishlist', critical for rendering the wishlist page or functionality within the application.
+
+**Solution:**  
+- **URL Name Does Not Exist:** Ensure a URL pattern named 'wishlist' is defined in one of the urls.py files within the application. If missing, add a corresponding path entry to define this URL pattern.
+- **Namespace Issue:** If using application namespaces (e.g., `app_name = 'wishlist'` in the application's urls.py), ensure to include the namespace when referencing the URL in templates or reverse function calls. Correctly prefix the URL name with the namespace, changing `{% url 'wishlist' %}` to `{% url 'wishlist:view_wishlist' %}` in templates, and similar adjustments in reverse function calls.
+
+### Resolving TemplateSyntaxError for Custom Tag Library
+
+**Problem:**  
+When attempting to access the product detail page, Django throws a TemplateSyntaxError, indicating that the custom tag library 'wishlist_tags' is not registered. The error suggests Django is unable to locate the custom tag library defined in the templatetags directory of the wishlist app.
+
+**Solution:**  
+The root cause was the absence of an `__init__.py` file within the templatetags directory of the wishlist app. Django requires each Python directory to contain an `__init__.py` file to be recognized as a package. The presence of this file allows Django and Python to recognize the templatetags directory as a valid module, making the custom template tags available for use in templates.
+
+### Resolving the NoReverseMatch Error for Wishlist URLs
+
+**Problem:**  
+The application threw a NoReverseMatch error when attempting to access the product detail page, indicating that the `wishlist_add` and `wishlist_remove` URLs could not be found, suggesting an issue with how URLs were referenced in the template.
+
+**Solution:**  
+The error was due to incorrect usage of URL namespacing in the template. The application uses URL namespacing for the wishlist app (`app_name = 'wishlist'` in wishlist/urls.py), requiring specifying both the namespace and the URL name when using the `{% url %}` template tag. The problem was resolved by correctly prefixing the URL names with the `wishlist:` namespace in the product_detail.html template.
+
+
+<!-- Correct URL references with namespacing -->
+{% if product|in_user_wishlist:user %}
+    <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
+{% else %}
+    <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-success">Add to Wishlist</a>
+{% endif %}
+
+
+## Future Development
+
+- Implement a loyalty program for frequent shoppers.
+- Expand product range to include organic and dietary-specific items.
+
+## Deployment
+
+Bidera Store is deployed on Heroku. Follow these steps for deployment:
+1. Set up a Heroku account and create a new app.
+2. Connect your GitHub repository to Heroku.
+3. Set environment variables in Heroku.
+4. Deploy the application.
+
+For detailed deployment instructions, refer to the [Heroku Documentation](https://devcenter.heroku.com/articles/git).
+
+## Credits
+
+### Code
+- During the development of the Bidera Store project, I extensively utilized the tools and resources (Template and resources) provided by the [Code Institute Boutique Ado Project](https://codeinstitute.net/).
+
+### Language Used
+- TECHNOLOGIES: 
+    - HTML5: To build the main structure of the site
+    - CSS3:  To style the website with bootstrap
+    - JAVASCRIPT: For the frontend interactivity
+
+### Deployment
+- Use Code Institute [Django Deployment Instructions](https://docs.google.com/document/d/1P5CWvS5cYalkQOLeQiijpSViDPogtKM7ZGyqK-yehhQ/edit#heading=h.5s9novsydyp1)
+- Heroku
+- Amazon AWS
+
+### Content and Media
+- Product images and descriptions were sourced from various free image repositories and manufacturers' websites.
+
+### Acknowledgements
+- Thanks to my mentor [Can Sücüllü](https://github.com/cansucullu) were consulted during the development process.
+- Special thanks to the Django and Bootstrap documentation for providing valuable resources.
