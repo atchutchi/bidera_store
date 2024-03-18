@@ -69,27 +69,7 @@
         </div>
     </div>
 </div>
-<!-- Wishlist Section -->
-<div class="row">
-    <div class="col-12">
-        <h3 class="text-muted">My Wishlist</h3>
-        <div class="wishlist-items">
-            {% if wishlist %}
-                {% for product in wishlist %}
-                    <div class="wishlist-item">
-                        <p>{{ product.name }}</p>
-                        <p>Price: ${{ product.price }}</p>
-                        <!-- Display the date when the item was added to the wishlist -->
-                        <p>Added on: {{ product.added_date|date:"F d, Y" }}</p>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>Your wishlist is empty.</p>
-            {% endif %}
-        </div>
-    </div>
-</div>
-
+{% include 'includes/footer.html' %}
 {% endblock %}
 
 {% block postloadjs %}
