@@ -3,10 +3,11 @@
         <div class="row">
             <div class="col-md-4 mb-3 mb-md-0">
                 <h5>FAQ</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#!" class="text-white">How to order</a></li>
-                    <li><a href="#!" class="text-white">Shipping</a></li>
-                </ul>
+                <form action="{% url 'newsletter_signup' %}" method="post">
+                    {% csrf_token %}
+                    {{ newsletter_signup_form.as_p }}
+                    <button type="submit">Subscribe</button>
+                </form>                
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
                 <h5>Follow Us</h5>
