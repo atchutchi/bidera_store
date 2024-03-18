@@ -187,6 +187,7 @@ input[name='q']::placeholder {
   overflow-y: auto;
 }
 
+
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
