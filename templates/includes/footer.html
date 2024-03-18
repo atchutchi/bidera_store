@@ -1,24 +1,25 @@
 <footer class="bg-black text-white mt-5">
-    <div class="container py-4">
-        <div class="row">
-            <div class="col-md-4 mb-3 mb-md-0">
-                <h5>FAQ</h5>
-                <form action="{% url 'newsletter_signup' %}" method="post">
-                    {% csrf_token %}
-                    {{ newsletter_signup_form.as_p }}
-                    <button type="submit">Subscribe</button>
-                </form>                
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-                <h5>Follow Us</h5>
-                <a href="https://web.facebook.com/profile.php?id=61557205108337" class="text-white mr-2"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/bidera_store/" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com" class="text-white"><i class="fab fa-x"></i></a>
-            </div>
-            <div class="col-md-4">
-                <h5>Contact Us</h5>
-                <p>Email: biderastore@gmail.com</p>
-            </div>
+    <div class="container">
+        <div class="newsletter">
+            <h5>Sign up for the Newsletter</h5>
+            <form action="{% url 'newsletter_signup' %}" method="post" class="form-inline">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ newsletter_signup_form.email }}
+                </div>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>                                
+        </div>
+        <div class="social-icons">
+            <h5>Follow Us</h5>
+            <a href="https://web.facebook.com/profile.php?id=61557205108337"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/bidera_store/"><i class="fab fa-instagram"></i></a>
+            <a href="https://x.com"><i class="fab fa-x"></i></a>
+        </div>
+        <div class="contact-info">
+            <h5>Contact Us</h5>
+            <p>Email: biderastore@gmail.com</p>
         </div>
     </div>
 </footer>
+    
