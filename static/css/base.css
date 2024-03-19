@@ -13,14 +13,14 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .logo-highlight {
-  color: #fdba2d; /* Cor amarelo especificada */
+  color: #fdba2d; 
 }
   
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Make sure the body is at least the height of the viewport */
-  margin: 0; /* Reset any default margin */
+  min-height: 100vh;
+  margin: 0; 
   background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
   background-size: cover;
   font-family: 'Lato', sans-serif;
