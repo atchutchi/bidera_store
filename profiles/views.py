@@ -8,13 +8,14 @@ from wishlist.models import WishlistItem  # Import the WishlistItem model
 
 from checkout.models import Order
 
+
 @login_required
 def profile(request):
     """Display the user's profile including their wishlist."""
     profile = get_object_or_404(UserProfile, user=request.user)
 
     # Retrieve all wishlist items for the current user.
-    # This query gets the WishlistItems related to the user, ensuring you have access to the added_date attribute.
+    # This query gets the WishlistItems related to the user
     wishlist_items = WishlistItem.objects.filter(user=request.user)
 
     if request.method == 'POST':
@@ -23,7 +24,9 @@ def profile(request):
             form.save()
             messages.success(request, 'Profile updated successfully')
         else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
+            messages.error(
+                request,
+                'Update failed. Please ensure the form is valid.')
     else:
         form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
@@ -32,12 +35,13 @@ def profile(request):
     context = {
         'form': form,
         'orders': orders,
-        # Pass the wishlist items to the template. Each item has access to 'added_date' now.
+        # Pass the wishlist items to the template.
         'wishlist_items': wishlist_items,
         'on_profile_page': True
     }
 
     return render(request, 'profiles/profile.html', context)
+
 
 def order_history(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)

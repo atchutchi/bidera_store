@@ -8,7 +8,6 @@ from .models import Product, Category
 from wishlist.models import WishlistItem
 from .forms import ProductForm
 
-# Create your views here.
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
@@ -34,7 +33,7 @@ def all_products(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
-            
+
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
             products = products.filter(category__name__in=categories)
@@ -43,14 +42,16 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+
+            queries = Q(
+                    name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-        
+
         products_in_wishlist = []
-        
+
         if request.user.is_authenticated:
             wishlist_items = WishlistItem.objects.filter(user=request.user)
             products_in_wishlist = [item.product.id for item in wishlist_items]
@@ -79,6 +80,7 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -93,10 +95,12 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                    request,
+                    'Failed to add product. Please ensure the form is valid.')
     else:
         form = ProductForm()
-        
+
     template = 'products/add_product.html'
     context = {
         'form': form,
@@ -120,7 +124,9 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(
+                    request,
+                    'Update Failed. Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')
@@ -155,11 +161,13 @@ def add_to_wishlist(request, product_id):
     messages.success(request, 'Produto adicionado à lista de desejos!')
     return redirect(reverse('product_detail', args=[product_id]))
 
+
 @login_required
 def remove_from_wishlist(request, product_id):
     """View para remover um produto da lista de desejos"""
     product = get_object_or_404(Product, pk=product_id)
-    wishlist_item = WishlistItem.objects.filter(user=request.user, product=product)
+    wishlist_item = WishlistItem.objects.filter(
+        user=request.user, product=product)
     wishlist_item.delete()
     messages.success(request, 'Produto removido da lista de desejos.')
     return redirect(reverse('product_detail', args=[product_id]))
