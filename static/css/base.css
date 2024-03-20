@@ -281,12 +281,41 @@ footer .social-icons a:hover {
   transform: scale(1.1); /* Scale effect on hover */
 }
 
+/* Mailchimp */
 #mc_embed_signup {
-  background:#fff;
-  clear:left; 
-  font:14px Helvetica,Arial,sans-serif; 
-  width: 400px;
+  background: transparent;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }
+
+#mc_embed_signup form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#mc_embed_signup input[type="email"] {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 2px solid #fdba2d;
+  color: #000;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+
+#mc_embed_signup input[type="submit"] {
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+  background-color: #fdba2d;
+  color: black;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
+}
+
+#mc_embed_signup input[type="submit"]:hover {
+  background-color: #e0a800;
+}
+
+
 
 /* -------------------------------- Media Queries */
 
