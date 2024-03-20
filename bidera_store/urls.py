@@ -18,13 +18,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .views import handler404
-from django.contrib.sitemaps.views import sitemap
-from .sitemaps import HomeSitemap
-
-
-sitemaps = {
-    'home': HomeSitemap,
-}
 
 
 urlpatterns = [
@@ -38,7 +31,6 @@ urlpatterns = [
     path('wishlist/', include('wishlist.urls')),
     path('contact/', include('contact.urls')),
     path('newsletter/', include('newsletter.urls')),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 handler404 = 'bidera_store.views.handler404'
 
