@@ -165,13 +165,6 @@ All code passed the validation tests through the [PEP8CI](https://pep8ci.herokua
 | home/forms.py  | Page passes validation with no errors | All clear, no errors found  |
 | home/apps.py  | Page passes validation with no errors | All clear, no errors found  |
 | home/admin.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/views.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/urls.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/models.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/forms.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/apps.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/admin.py  | Page passes validation with no errors | All clear, no errors found  |
-| newsletter/context_processors.py  | Page passes validation with no errors | All clear, no errors found  |
 | products/views.py  | Page passes validation with no errors | All clear, no errors found  |
 | products/urls.py  | Page passes validation with no errors | All clear, no errors found  |
 | products/models.py  | Page passes validation with no errors | All clear, no errors found  |
