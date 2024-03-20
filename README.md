@@ -118,6 +118,88 @@ The error was due to incorrect usage of URL namespacing in the template. The app
 - Implement a loyalty program for frequent shoppers.
 - Expand product range to include organic and dietary-specific items.
 
+## Validator Testing
+#### **HTML Validation**
+I ran the code for all the pages through the [W3C HTML Validator](https://validator.w3.org/) using the textarea input.
+
+| Feature  | Expected Outcome | Result |
+| ------------- | ------------- | ------------- |
+
+
+### **CSS Validation**
+- In my project, I conducted a CSS validation test using the Jigsaw W3 CSS Validator for CSS Level 3 + SVG. The test identified several errors, as displayed in the image below. However, I chose not to correct these errors as the CSS in question is part of a pre-made template from Start Bootstrap - Agency v7.0.12 (https://startbootstrap.com/theme/agency). For reference, the details of these validation errors can be seen in the image provided.
+![Jigsaw](./static/)
+
+### **Python Linting**
+All code passed the validation tests through the [PEP8CI](https://pep8ci.herokuapp.com/). 
+| Feature  | Expected Outcome | Result |
+| ------------- | ------------- | ------------- |
+| bidera_store/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| bidera_store/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| bidera_store/settings.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| bag/context.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/signals.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/webhook_handler.py  | Page passes validation with no errors | All clear, no errors found  |
+| checkout/webhook.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| contact/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| home/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| newsletter/context_processors.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| products/widgets.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| profiles/tests.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/views.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/urls.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/models.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/forms.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/apps.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/admin.py  | Page passes validation with no errors | All clear, no errors found  |
+| wishlist/tests.py  | Page passes validation with no errors | All clear, no errors found  |
+
+### **JavaScript Linting**
+- The code was tested on [jshint](https://jshint.com/) Without errors.
+
+![jshint](./static/)
+
+
 ## Deployment
 
 Bidera Store is deployed on Heroku. Follow these steps for deployment:
