@@ -225,3 +225,4 @@ For detailed deployment instructions, refer to the [Heroku Documentation](https:
 ### Acknowledgements
 - Thanks to my mentor [Can Sücüllü](https://github.com/cansucullu) were consulted during the development process.
 - Special thanks to the Django and Bootstrap documentation for providing valuable resources.
+

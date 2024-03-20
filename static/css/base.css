@@ -25,6 +25,7 @@ body {
   background-size: cover;
   font-family: 'Lato', sans-serif;
   color: #555;
+  text-align: center;
 }
 
 .content {
@@ -316,7 +317,6 @@ footer .social-icons a:hover {
 }
 
 
-
 /* -------------------------------- Media Queries */
 
 /* Slightly larger container on xl screens */
@@ -325,6 +325,7 @@ footer .social-icons a:hover {
   max-width: 80%;
 }
 }
+
 
 /* Allauth form formatting */
 
@@ -565,7 +566,8 @@ color: #17a2b8; /* text-info */
 /* Add to your existing CSS, this is the media query for small screens like smartphones and tablets */
 @media (max-width: 768px) {
   footer .container {
-    display: block;
+    flex-direction: column;
+    text-align: center;
   }
 
   footer .form-inline,
@@ -597,4 +599,8 @@ footer .contact-info {
 /* Adjust padding or margin as needed to match your design */
 footer {
   padding: 1rem; /* Adjust padding for smaller screens */
+}
+
+footer div {
+  margin-bottom: 15px;
 }
