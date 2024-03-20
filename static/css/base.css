@@ -6,7 +6,6 @@ body, h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
 }
 
-
 .logo-font {
   font-family: 'Madimi One', sans-serif; /* font for the logo */
   text-transform: uppercase;
@@ -15,7 +14,7 @@ body, h1, h2, h3, h4, h5, h6 {
 .logo-highlight {
   color: #fdba2d; 
 }
-  
+
 body {
   display: flex;
   flex-direction: column;
@@ -210,13 +209,9 @@ footer {
 }
 
 footer {
-  background-color: #343a40; /* Dark shade for the footer */
-  color: white;
-  padding: 2rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  margin-top: auto;
 }
 
 footer .container {
@@ -563,44 +558,40 @@ color: #17a2b8; /* text-info */
     }
 }
 
-/* Add to your existing CSS, this is the media query for small screens like smartphones and tablets */
 @media (max-width: 768px) {
   footer .container {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+  }
+
+  footer .mc_embed_signup, 
+  footer .social-icons, 
+  footer .contact-info {
+    width: 100%;
+    margin: 0.5rem 0; 
     text-align: center;
   }
 
-  footer .form-inline,
-  footer .form-inline .form-group,
-  footer .form-inline .form-control,
-  footer .form-inline .btn,
-  footer .social-icons,
+  
+  footer #mc_embed_signup .button {
+    width: 100%; 
+    margin-top: 0.5rem; 
+
+  
+  footer .social-icons a {
+    margin: 0.2rem; 
+    display: inline-block; 
+  }
+
   footer .contact-info {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-
-  footer .form-inline .btn {
-    width: auto; /* Make the button width auto so it takes up the necessary space */
+    text-align: center;
+    margin-top: 0.5rem;
   }
 }
 
-/* This styles your social media icons for small screens */
-footer .social-icons a {
-  display: inline-block;
-  margin: 0.5rem 0.25rem; /* Give some space around icons */
+footer a:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
 }
-
-/* Ensure the contact info text is centered on small screens */
-footer .contact-info {
-  text-align: center;
-}
-
-/* Adjust padding or margin as needed to match your design */
-footer {
-  padding: 1rem; /* Adjust padding for smaller screens */
-}
-
-footer div {
-  margin-bottom: 15px;
 }
