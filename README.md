@@ -375,6 +375,8 @@ class WishlistItem(models.Model):
 </details>
 
 ## SEO
+For the SEO marketing I used  the [XML-SITEMAPS](https://www.xml-sitemaps.com/details-bidera-store-4f0dc6400eda.herokuapp.com-74dddaa7b.html)
+![Pro Site Maps](./media/sitemaps.png)
 
 ## Feature
 
@@ -568,23 +570,17 @@ All code passed the validation tests through the [PEP8CI](https://pep8ci.herokua
 ### **JavaScript Linting**
 - The code was tested on [jshint](https://jshint.com/) Without errors.
 
-![jshint](./static/)
-
-
-## Deployment
-
-Bidera Store is deployed on Heroku. Follow these steps for deployment:
-1. Set up a Heroku account and create a new app.
-2. Connect your GitHub repository to Heroku.
-3. Set environment variables in Heroku.
-4. Deploy the application.
-
-For detailed deployment instructions, refer to the [Heroku Documentation](https://devcenter.heroku.com/articles/git).
 
 ## Credits
 
 ### Code
 - During the development of the Bidera Store project, I extensively utilized the tools and resources (Template and resources) provided by the [Code Institute Boutique Ado Project](https://codeinstitute.net/) as the walkthrough project Boutique Ado, also **Chat GPT** for debug the codes error.
+- I used [MailChimp](https://mailchimp.com/) for newsletter
+- Use Bootstrap [Cheatsheet](https://getbootstrap.com/docs/5.0/examples/cheatsheet/) to better style
+
+### Storage 
+- Use the [AWS](https://aws.amazon.com/)
+
 
 ### DataBase
 - https://dbdiagram.io/d/Bidera-Store-65f719a9ae072629ce3876e7
