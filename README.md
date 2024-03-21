@@ -97,7 +97,6 @@ As a **user** I can **add and remove products from my wishlist ** so that ** I c
 
 
 ### Sorting and Seaching
-
 - As a **Shopper** I can **Sort the list of available products** so that i can **Easily identify the best rated, Best priced and categorically sorted products**
 
 - As a **Shopper** I can **Sort a specific category of product** so that i can **Find the best-priced or best-rated product in a specific category, or sort the products in that category by name**
@@ -114,19 +113,284 @@ As a **user** I can **add and remove products from my wishlist ** so that ** I c
 
 ### Database Schema
 
-The database schema of Bidera Store is designed to efficiently manage products, orders, and deliveries. The schema includes tables for `Products`, `Orders`, `OrderItems`, `Users`, and `DeliveryInformation`.
+The database schema of Bidera Store is designed to efficiently manage products, orders, and deliveries. The schema includes tables for `Products`, `Wishlist`, `OrderItems`, `Category`, `Users`, and `Checkout`.
 
-![Database Schema Diagram](./static/assets/img/readme/database_schema.png)
+![Database Schema Diagram](./media/db-bidera-Store.png)
 
 ### Models
 
 Our application utilizes Django models to represent and interact with the database. Below are key models used in Bidera Store:
 
-- **Product Model**: Stores information about the food products available for purchase.
-- **Order Model**: Manages customer orders and associates them with users.
-- **DeliveryInformation Model**: Contains delivery details for each order.
+<details>
 
-## Surface
+### Checkout Models
+<summary>Order Model</summary>
+
+```python
+
+class Order(models.Model):
+    order_number = models.CharField(max_length=32, null=False, editable=False)
+    user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL, null=True, blank=True, related_name='orders')
+    full_name = models.CharField(max_length=50, null=False, blank=False)
+    email = models.EmailField(max_length=254, null=False, blank=False)
+    phone_number = models.CharField(max_length=20, null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False, blank=False)
+    postcode = models.CharField(max_length=20, null=True, blank=True)
+    town_or_city = models.CharField(max_length=40, null=False, blank=False)
+    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    county = models.CharField(max_length=80, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
+    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    original_bag = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
+
+    def _generate_order_number(self):
+        """
+        Generate a random, unique order number using UUID
+        """
+        return uuid.uuid4().hex.upper()
+
+    def update_total(self):
+        """
+        Update grand total each time a line item is added,
+        accounting for delivery costs.
+        """
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        self.grand_total = self.order_total + self.delivery_cost
+        self.save()
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the order number
+        if it hasn't been set already.
+        """
+        if not self.order_number:
+            self.order_number = self._generate_order_number()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.order_number
+```
+**Description:**
+- The Order model is central to the checkout app, tracking each transaction made on the site.
+- It includes comprehensive information about the order, such as customer details, shipping address, and financial totals.
+- Unique order numbers are generated using UUID, ensuring each order is easily identifiable.
+- Methods like _generate_order_number and update_total handle order numbering and financial calculations, respectively, facilitating accurate order processing and management.
+
+</details>
+<details>
+
+<summary>OrderLineItem Model</summary>
+
+```python
+
+class OrderLineItem(models.Model):
+    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    quantity = models.IntegerField(null=False, blank=False, default=0)
+    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the original save method to set the lineitem total
+        and update the order total.
+        """
+        self.lineitem_total = self.product.price * self.quantity
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f'SKU {self.product.sku} on order {self.order.order_number}'  
+```
+**Description:**
+- This model details individual items within an order, linking products to their respective orders and quantifying each item.
+- The lineitem_total field calculates the total cost of each product line, contributing to the overall order total.
+- Overriding the save method ensures that lineitem_total is always accurately calculated and that changes are reflected in the order’s grand total.
+
+</details>
+<details>
+
+### Contact Models
+<summary>Contact Model</summary>
+
+```python
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name}"
+```
+**Description:**
+- The Contact model acts as a repository for messages sent by site visitors, encapsulating essential information needed to facilitate communication.
+- It comprises several fields to capture the sender's name, email address, the subject of the message, and the message itself. Additionally, the model automatically records the time the message was created (created_at), aiding in organizing and responding to messages in a timely manner.
+- The __str__ method provides a human-readable representation of each contact instance, making it easier to identify messages in the admin interface or debug logs by displaying the sender's name.
+
+</details>
+<details>
+
+### Product Models
+<summary>Category Model</summary>
+
+```python
+
+class Category(models.Model):
+    class Meta:
+        verbose_name_plural = 'Categories'
+        
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+```
+**Description:**
+- The Category model serves as a way to group products into logical categories, making it easier for users to navigate and find products of interest.
+- It contains two main fields: name for the database-friendly name of the category, and friendly_name for a more human-readable version that can be displayed on the site.
+- The Meta class with verbose_name_plural = 'Categories' ensures that Django refers to this model in the plural form correctly in the admin interface.
+- The __str__ method returns the category's name, and the get_friendly_name method provides a way to retrieve the category's friendly name, enhancing readability and user experience.
+
+</details>
+<details>
+
+<summary>Product Model</summary>
+
+
+```python
+
+class Product(models.Model):
+    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    sku = models.CharField(max_length=254, null=True, blank=True)
+    name = models.CharField(max_length=254)
+    description = models.TextField()
+    quantity_per_kg = models.CharField(max_length=12, null=True, blank=True)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    image_url = models.URLField(max_length=1024, null=True, blank=True)
+    image = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+```
+**Description:**
+- The Product model captures detailed information about each product offered on the platform.
+- It is linked to the Category model through a ForeignKey, allowing products to be categorized. This relation includes on_delete=models.SET_NULL to avoid deleting products if their category is removed.
+- Fields such as sku, name, description, and price store essential product details, while quantity_per_kg replaces the previously used has_sizes field to specify quantities or sizes.
+- The model also includes fields for rating, image_url, and image to handle product ratings and images, providing a comprehensive view of each product.
+- The __str__ method returns the product's name, facilitating easier identification in the admin interface or debug logs.
+
+</details>
+<details>
+
+### Profiles Models
+<summary>UserProfile Model</summary>
+
+```python
+class UserProfile(models.Model):
+    """
+    A user profile model for maintaining default
+    delivery information and order history.
+    """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    default_phone_number = models.CharField(max_length=20, null=True, blank=True)
+    default_street_address1 = models.CharField(max_length=80, null=True, blank=True)
+    default_street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    default_town_or_city = models.CharField(max_length=40, null=True, blank=True)
+    default_county = models.CharField(max_length=80, null=True, blank=True)
+    default_postcode = models.CharField(max_length=20, null=True, blank=True)
+    default_country = CountryField(blank_label='Country', null=True, blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+```
+**Description:**
+- The UserProfile model is designed to store additional information about users that is not covered by the default Django User model.
+- It establishes a one-to-one relationship with the User model, ensuring that each user has a unique profile.
+- This model includes fields for storing default delivery information, such as phone number, address, town/city, county, postcode, and country. The use of django_countries.fields.CountryField for the country field provides a user-friendly interface for selecting countries.
+- The __str__ method returns the username associated with each profile, simplifying identification in administrative operations or debugging processes.
+
+</details>
+<details>
+
+<summary>Signal Receiver for UserProfile</summary>
+
+
+```python
+
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    """
+    Create or update the user profile.
+    """
+    if created:
+        UserProfile.objects.create(user=instance)
+    # Existing users: just save the profile
+    instance.userprofile.save()
+
+```
+**Description:**
+- This signal receiver listens for the post_save event of the Django User model. Whenever a User instance is saved, this function is invoked.
+- The create_or_update_user_profile function checks whether the save event was triggered by the creation of a new user (if created:). If so, it automatically creates a new UserProfile instance associated with the new user.
+- For existing users, the function simply saves the associated UserProfile instance, ensuring that any updates to the user's information are reflected in the profile.
+- This automated approach ensures that each user has a corresponding - UserProfile without requiring manual profile creation, enhancing data consistency and user experience.
+
+</details>
+
+
+<details>
+
+### Wishlist Models
+<summary>WishlistItem Model</summary>
+
+```python
+
+class WishlistItem(models.Model):
+    user = models.ForeignKey(
+            User, on_delete=models.CASCADE, related_name='wishlist_items')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    added_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.product.name} on {self.user.username}'s wishlist"
+
+```
+**Description:**
+- The WishlistItem model serves as a bridge between the User model from Django's built-in auth system and the Product model from the products application. It effectively enables users to curate a list of products they are interested in.
+- Each instance of WishlistItem represents a single product saved to a user's wishlist. The model includes:
+    - A ForeignKey relationship to User, allowing the model to reference which user the wishlist item belongs to. The related_name='wishlist_items' parameter facilitates reverse lookups, enabling easy retrieval of all wishlist items for a specific user.
+    - A ForeignKey relationship to Product, indicating which product the wishlist item represents.
+    - An added_date field, which automatically captures the datetime when an item is added to the wishlist, providing insights into user behavior and preferences over time.
+- The __str__ method returns a string representation of each wishlist item, combining the product name and the username. This enhances readability and helps in identifying wishlist items within the Django admin interface or in debugging output.
+</details>
+
+## SEO
+
+## Feature
+
+### Navigation - Home page:
+
+The Bidera Store's homepage is a vibrant entryway into the site, featuring a navigation bar with direct links to product categories and contact information. Central to the page is a compelling image of a woman with fresh fruits and vegetables, symbolizing product quality. The top-right corner offers account access and a wishlist feature, enhancing user engagement. The interface adapts responsively to different devices, ensuring a seamless shopping experience.
+![Home Page](./media/home-page.png)
+
+### Footer:
+
+The footer of Bidera Store is a streamlined space for engagement, featuring a newsletter sign-up form flanked by social media links. This section encourages users to stay connected and up-to-date with store offerings and news.
+![Footer](./media/desktop-footer.png)
+
+### All Products:
+The "All Products" page of Bidera Store presents a clean, organized display of available items. Each product is showcased with a high-quality image, price tag, category tag, and a user rating. Users can interact with each product through 'Edit' and 'Delete' options, and a sorting feature enhances the browsing experience.
+![All Products](./media/products-page.png)
 
 ### Wireframes
 
@@ -274,6 +538,9 @@ For detailed deployment instructions, refer to the [Heroku Documentation](https:
 
 ### Code
 - During the development of the Bidera Store project, I extensively utilized the tools and resources (Template and resources) provided by the [Code Institute Boutique Ado Project](https://codeinstitute.net/).
+
+### DataBase
+- https://dbdiagram.io/d/Bidera-Store-65f719a9ae072629ce3876e7
 
 ### Language Used
 - TECHNOLOGIES: 
