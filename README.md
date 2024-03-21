@@ -434,20 +434,9 @@ The "Sign Out" page of Bidera Store offers a simple, no-fuss interface, posing t
 ![Signout Page](./media/desktop-signout.png)
 
 ### Wireframes
-
-Wireframes were created to plan the layout of key pages within Bidera Store, focusing on usability and a seamless shopping experience.
-
-[View Wireframes](#)
+The wireframe used was based on the Code institute Boutique Ado course project, so the site does not have a new structure.
 
 ## Features and Testing
-
-### Feature: Product Browsing and Selection
-![Product Page](./static/assets/img/readme/product_page.png)
-**Testing**: This feature was tested across multiple devices and browsers to ensure products are displayed correctly and can be added to the shopping cart.
-
-### Feature: Secure Checkout Process
-![Checkout Page](./static/assets/img/readme/checkout_page.png)
-**Testing**: The checkout process was rigorously tested to ensure security and accuracy in order processing.
 
 ## Testing and Troubleshooting
 
@@ -477,13 +466,15 @@ The application threw a NoReverseMatch error when attempting to access the produ
 The error was due to incorrect usage of URL namespacing in the template. The application uses URL namespacing for the wishlist app (`app_name = 'wishlist'` in wishlist/urls.py), requiring specifying both the namespace and the URL name when using the `{% url %}` template tag. The problem was resolved by correctly prefixing the URL names with the `wishlist:` namespace in the product_detail.html template.
 
 
+```h
+
 <!-- Correct URL references with namespacing -->
 {% if product|in_user_wishlist:user %}
     <a href="{% url 'wishlist:remove_from_wishlist' product.id %}" class="btn btn-danger">Remove from Wishlist</a>
 {% else %}
     <a href="{% url 'wishlist:add_to_wishlist' product.id %}" class="btn btn-success">Add to Wishlist</a>
 {% endif %}
-
+```
 
 ## Future Development
 
@@ -496,11 +487,26 @@ I ran the code for all the pages through the [W3C HTML Validator](https://valida
 
 | Feature  | Expected Outcome | Result |
 | ------------- | ------------- | ------------- |
-
+| Base Page  | Page passes validation with no errors | no error  |
+| Home Page  | Page passes validation with no errors | no error  |
+| Footer Page  | Page passes validation with no errors | no error  |
+| Profile Page  | Page passes validation with no errors | no error  |
+| All Accounts Page  | Page passes validation with no errors | no error  |
+| All Social accounts Page  | Page passes validation with no errors | no error  |
+| Wishlist Page  | Page passes validation with no errors | no error  |
+| Checkout Page  | Page passes validation with no errors | no error  |
+| checkout_success Page  | Page passes validation with no errors | no error  |
+| 404 Page  | Page passes validation with no errors | no error  |
+| add_product Page  | Page passes validation with no errors | no error  |
+| edit_product Page  | Page passes validation with no errors | no error  |
+| product_detail Page  | Page passes validation with no errors | no error  |
+| products Page  | Page passes validation with no errors | no error  |
+| contact Page  | Page passes validation with no errors | no error  |
+| bag Page  | Page passes validation with no errors | no error  |
 
 ### **CSS Validation**
-- In my project, I conducted a CSS validation test using the Jigsaw W3 CSS Validator for CSS Level 3 + SVG. The test identified several errors, as displayed in the image below. However, I chose not to correct these errors as the CSS in question is part of a pre-made template from Start Bootstrap - Agency v7.0.12 (https://startbootstrap.com/theme/agency). For reference, the details of these validation errors can be seen in the image provided.
-![Jigsaw](./static/)
+- In my project, I conducted a CSS validation test using the Jigsaw W3 CSS Validator for CSS Level 3 + SVG. The test show
+![Jigsaw](./media/jigsaw.png)
 
 ### **Python Linting**
 All code passed the validation tests through the [PEP8CI](https://pep8ci.herokuapp.com/). 
@@ -578,7 +584,7 @@ For detailed deployment instructions, refer to the [Heroku Documentation](https:
 ## Credits
 
 ### Code
-- During the development of the Bidera Store project, I extensively utilized the tools and resources (Template and resources) provided by the [Code Institute Boutique Ado Project](https://codeinstitute.net/).
+- During the development of the Bidera Store project, I extensively utilized the tools and resources (Template and resources) provided by the [Code Institute Boutique Ado Project](https://codeinstitute.net/) as the walkthrough project Boutique Ado, also **Chat GPT** for debug the codes error.
 
 ### DataBase
 - https://dbdiagram.io/d/Bidera-Store-65f719a9ae072629ce3876e7
@@ -591,13 +597,110 @@ For detailed deployment instructions, refer to the [Heroku Documentation](https:
 
 ### Deployment
 - Use Code Institute [Django Deployment Instructions](https://docs.google.com/document/d/1P5CWvS5cYalkQOLeQiijpSViDPogtKM7ZGyqK-yehhQ/edit#heading=h.5s9novsydyp1)
-- Heroku
-- Amazon AWS
+
+### Heroku Deployment Steps
+
+1. **Sign Up or Log In to Heroku**
+   - Visit [Heroku's website](https://www.heroku.com/) and either log in or create a new account.
+
+2. **Create a New App**
+   - From the Heroku Dashboard, create a new app. Provide a unique name for your app and select a region that is closest to you or your user base.
+
+3. **Configuration**
+   - Navigate to the **Settings** tab of your app on Heroku.
+   - In the **Config Vars** section, add your ElephantSQL `DATABASE_URL`.
+   - Copy the `DATABASE_URL` for Django configuration.
+
+4. **Environment Variables**
+   - Create an `env.py` file in your Django app repository.
+   - Set environment variables for `DATABASE_URL` and `SECRET_KEY`.
+   - Add these along with any other necessary environment variables to Heroku's Config Vars.
+
+5. **Database Migration**
+   - Update `settings.py` in your Django project with the necessary imports and configurations, including database settings.
+   - Migrate your models to the new database connection using `python manage.py migrate`.
+
+6. **Static and Media Files Configuration**
+   - Create an S3 bucket on Amazon AWS for handling static and media files.
+   - Update the Django `settings.py` file and `env.py` with your bucket details.
+   - Add AWS access keys and secret access keys to both `env.py` and Heroku Config Vars.
+
+7. **Disable Collectstatic**
+   - Temporarily add `DISABLE_COLLECTSTATIC` with a value of 1 to Heroku Config Vars to prevent Heroku from collecting static files.
+
+8. **Dependencies**
+   - Ensure all required packages are listed in `requirements.txt` and install them.
+
+9. **Application Settings**
+   - Configure static files settings and templates directory within `settings.py`.
+   - Add `Heroku` to the `ALLOWED_HOSTS` list in `settings.py`.
+
+10. **Project Structure**
+    - Ensure the existence of media, static, and templates folders within your project.
+
+11. **Procfile**
+    - Create a `Procfile` in the root of your repository with the command to run your app, e.g., `web: gunicorn your_project_name.wsgi`.
+
+12. **Version Control**
+    - Add, commit, and push your changes to GitHub.
+
+13. **Heroku Deployment**
+    - Manually deploy your branch on Heroku and monitor the build logs for any errors.
+    - Access your live site through the link provided by Heroku upon successful deployment.
+
+## Stripe Integration
+
+1. **Account Setup**
+   - Create a Stripe account and access the developer dashboard to obtain your API keys.
+
+2. **Configuration**
+   - Insert your Stripe API keys into both `env.py` and Heroku Config Vars.
+
+3. **Integration**
+   - Adjust your `settings.py` to point to the required Stripe variables.
+   - Follow Stripe's documentation for integrating Stripe within your Django project.
+
+### DATABASES
+- [Elephantsql](https://www.elephantsql.com/)
+
+### Language Used
+- TECHNOLOGIES: 
+    - HTML5: To build the main structure of the site
+    - CSS3:  To style the website with bootstrap
+    - JAVASCRIPT: For the frontend interactivity
+    - PYTHON: To build the backend with django
+        - asgiref==3.7.2
+        - boto3==1.34.66
+        - botocore==1.34.66
+        - dj-database-url==0.5.0
+        - Django==3.2.24
+        - django-allauth==0.41.0
+        - django-countries==7.2.1
+        - django-crispy-forms==1.14.0
+        - django-storages==1.14.2
+        - gunicorn==21.2.0
+        - jmespath==1.0.1
+        - oauthlib==3.2.2
+        - pillow==10.2.0
+        - psycopg2==2.9.9
+        - python3-openid==3.2.0
+        - pytz==2024.1
+        - requests-oauthlib==1.3.1
+        - s3transfer==0.10.1
+        - sqlparse==0.4.4
+        - stripe==8.5.0
+        - urllib3==1.26.18
+- FRAMEWORKS: DJANGO, JQUERY, BOOTSTRAP
+- VERSION CONTROL: GIT, GITHUB
+
+### Text & Image
+- [ChatGPT](https://chat.openai.com/) to generate text for the bidera-store page and formating the readme file
+- 
 
 ### Content and Media
 - Product images and descriptions were sourced from various free image repositories and manufacturers' websites.
 
 ### Acknowledgements
-- Thanks to my mentor [Can Sücüllü](https://github.com/cansucullu) were consulted during the development process.
-- Special thanks to the Django and Bootstrap documentation for providing valuable resources.
+-   This project, Bidera Store, has been developed with reference to the **Boutique Ado** project from **Code Institute** as a structural and design foundation. I am grateful for the educational content and practical frameworks provided, which have been instrumental in shaping the development of this e-commerce site.
+- Special thanks are also due to my mentor, Can Sücüllü, whose guidance and innovative ideas have once again helped me streamline my work and bring this project to fruition. His support and expertise have been invaluable throughout this journey.
 
