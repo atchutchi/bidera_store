@@ -398,6 +398,11 @@ The "All Products" page of Bidera Store presents a clean, organized display of a
 The product page features an individual item, offering details like price, category, rating, and quantity per kg. A heart icon allows users to add it to their wishlist, while 'Edit' and 'Delete' provide management options. The product description highlights the item's local origin and health benefits, alongside an option for customers to select quantity before adding to their bag, with buttons for purchase or continued shopping.
 ![Individual Products](./media/product-individuals.png)
 
+### Bag Page:
+The "Bag" page on Bidera Store features a minimalist design where customers can review items they're purchasing. It details the product with an image, name, SKU, price, and a quantity selector with update and remove options. The subtotal is clearly listed alongside the total cost, including delivery, with a prompt for additional purchases to qualify for free delivery. Simple navigation links for "Keep Shopping" and "Secure Checkout" facilitate a smooth shopping experience.
+![Bag Page](./media/desktop-bag.png)
+
+
 ### Wireframes
 
 Wireframes were created to plan the layout of key pages within Bidera Store, focusing on usability and a seamless shopping experience.
