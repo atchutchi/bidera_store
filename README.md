@@ -422,6 +422,9 @@ The wishlist page on Bidera Store displays a curated collection of user-favored 
 Upon adding an item to their bag, users receive a notification confirming the action, along with a convenient link to the bag for a smooth transition to the checkout process.
 ![Add to bag Page](./media/toast.png)
 
+### Sign in
+The "Sign In" page on Bidera Store provides a seamless login experience with options for using Google for quick access or using traditional account credentials. There's a clear path for those needing to register or recover passwords, maintaining the site's straightforward and user-friendly design ethos.
+![Sign in Page](./media/signin.png)
 ### Sign Up
 The "Sign Up" page for Bidera Store offers a straightforward form where new users can create an account. It prompts for email confirmation, a chosen username, and a secure password, with fields for password verification to prevent errors. A link for existing users to sign in ensures ease of navigation for return shoppers. The page maintains the site's clean design and includes a footer inviting newsletter subscription and social media engagement.
 ![Signup Page](./media/sign%20up.png)
