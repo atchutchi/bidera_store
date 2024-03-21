@@ -290,54 +290,92 @@ color: #17a2b8; /* text-info */
 
 
 /* Footer */
+/* Footer Custom Styles */
 .bg-dark {
-  background-color: #000 !important;
+  background-color: #000 !important; /* Keeping the background dark */
 }
 
 .text-light {
-  color: #fff !important; 
+  color: #fff !important; /* Keeping text color light */
 }
 
 .py-4 {
-  padding-top: 0.5rem !important;
-  padding-bottom: 0.5rem !important;
+  padding-top: 10px !important; /* Reducing vertical padding for a thinner footer */
+  padding-bottom: 10px !important;
 }
 
 .container {
-  max-width: 80% !important;
+  max-width: 1140px; /* Standard container width for large devices */
+  width: 100%; /* Full width on smaller screens */
+  padding-right: 15px; /* Bootstrap default padding */
+  padding-left: 15px; /* Bootstrap default padding */
+  margin-right: auto; /* Centering container */
+  margin-left: auto; /* Centering container */
 }
 
-/* Newsletter and social media icons */
-.row.align-items-center {
-  flex-wrap: nowrap !important;
-  justify-content: space-around;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px; /* Aligning with the edge of the container */
+  margin-left: -15px; /* Aligning with the edge of the container */
 }
 
-#mc_embed_signup, .social-icons {
-  flex: 1 !important;
-  margin-bottom: 0 !important;
+/* Adjust column settings */
+.col-md-4 {
+  position: relative; /* For positioning social media icons correctly */
+  width: 100%; /* Full width on small screens */
+  padding-right: 15px; /* Bootstrap default padding */
+  padding-left: 15px; /* Bootstrap default padding */
+}
+
+
+/* Aligning items */
+.align-items-center {
+  align-items: center; /* Vertically center items */
+}
+
+/* Newsletter Styles */
+#mc_embed_signup {
+  text-align: left; /* Aligns the text to the left */
 }
 
 .input-group {
-  margin-top: -0.5rem; 
+  display: flex; /* Flex layout for inline elements */
 }
 
-.input-group .form-control {
-  border: 1px solid #fff; 
-  background-color: #333; 
-  color: #fff; 
+.form-control {
+  flex-grow: 1; /* Allows the input to grow and fill space */
+  margin-right: 10px; /* Space between input and button */
 }
 
-.input-group-append .btn-primary {
-  background-color: #fdba2d; 
-  border-color: #fdba2d;
+.btn-primary {
+  background-color: #fdba2d; /* Harmonizing with logo-highlight color */
+  border-color: #fdba2d; /* Ensuring border color matches */
+  color: #000; /* Text color for better contrast */
+}
+
+/* Social Media Icons Styles */
+.social-icons {
+  text-align: right; /* Aligns the social icons to the right */
+  display: flex;
+  justify-content: flex-end; /* Positioning icons at the end of the column */
 }
 
 .social-icons a {
-  color: #fff; 
-  font-size: 1.5rem; 
-  margin-right: 15px; 
+  color: #fff; /* White color for the icons */
+  margin-left: 10px; /* Space between icons */
 }
+
+/* Hover effects */
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+.input-group .form-control:hover,
+.input-group-append .btn-primary:hover {
+  opacity: 0.8;
+}
+
 
 
 
@@ -496,24 +534,9 @@ color: #17a2b8; /* text-info */
 }
 
 /* fmall screens */
-@media (max-width: 768px) {
-  .row.align-items-center {
-      flex-wrap: wrap; /
+@media (min-width: 768px) { /* Adjustments for medium screens and up */
+  .col-md-4 {
+      flex: 0 0 50%; /* Each column takes up half the container width */
+      max-width: 50%; /* Maximum width set to half of the container */
   }
-
-  #mc_embed_signup, .social-icons {
-      flex: 0 0 100%; 
-      text-align: center; 
-      margin-top: 10px; 
-  }
-
-  .input-group .form-control, .input-group-append .btn-primary {
-      width: 80%; 
-      margin: auto; 
-
-  .social-icons a {
-      font-size: 1.2rem; 
-      margin: 0 5px; 
-  }
-}
 }
