@@ -96,15 +96,16 @@
                                             <!-- Wishlist Heart Icon -->
                                             <div class="wishlist-heart-container">
                                                 {% if user.is_authenticated %}
-                                                    {% if product.id in products_in_wishlist %}
-                                                        <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart filled">
-                                                            <i class="fas fa-heart"></i>
-                                                        </a>
-                                                    {% else %}
-                                                        <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart">
-                                                            <i class="far fa-heart"></i>
-                                                        </a>
-                                                    {% endif %}
+                                                {% if product.id in products_in_wishlist %}
+                                                    <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart filled">
+                                                        <i class="fas fa-heart"></i>
+                                                    </a>
+                                                {% else %}
+                                                    <a href="{% url 'wishlist:toggle_wishlist' product.id %}" class="wishlist-heart">
+                                                        <i class="far fa-heart"></i>
+                                                    </a>
+                                                {% endif %}
+                                            
                                                 {% else %}
                                                     <a href="{% url 'account_login' %}">
                                                         <i class="far fa-heart"></i>
