@@ -22,7 +22,6 @@ body {
   margin: 0; 
   background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
   background-size: cover;
-  font-family: 'Lato', sans-serif;
   color: #555;
   text-align: center;
 }
