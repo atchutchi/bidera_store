@@ -4,4 +4,4 @@ Disallow: /accounts/
 Disallow: /bag/
 Disallow: /checkout/
 Allow: /
-Sitemap: https://<your-domain>/sitemap.xml
+Sitemap: https://bidera-store-4f0dc6400eda.herokuapp.com/sitemap.xml
