@@ -389,8 +389,14 @@ The footer of Bidera Store is a streamlined space for engagement, featuring a ne
 ![Footer](./media/desktop-footer.png)
 
 ### All Products:
+
 The "All Products" page of Bidera Store presents a clean, organized display of available items. Each product is showcased with a high-quality image, price tag, category tag, and a user rating. Users can interact with each product through 'Edit' and 'Delete' options, and a sorting feature enhances the browsing experience.
 ![All Products](./media/products-page.png)
+
+### Product Individual Page:
+
+The product page features an individual item, offering details like price, category, rating, and quantity per kg. A heart icon allows users to add it to their wishlist, while 'Edit' and 'Delete' provide management options. The product description highlights the item's local origin and health benefits, alongside an option for customers to select quantity before adding to their bag, with buttons for purchase or continued shopping.
+![Individual Products](./media/product-individuals.png)
 
 ### Wireframes
 
