@@ -376,7 +376,12 @@ color: #17a2b8; /* text-info */
   opacity: 0.8;
 }
 
-
+#mc-embedded-subscribe {
+  clear: both;
+  width: auto;
+  display: block;
+  /* margin: 1em 0 1em 5%; */
+}
 
 
 /* -------------------------------- Media Queries */
