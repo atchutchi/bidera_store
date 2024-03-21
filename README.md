@@ -115,7 +115,7 @@ As a **user** I can **add and remove products from my wishlist ** so that ** I c
 
 The database schema of Bidera Store is designed to efficiently manage products, orders, and deliveries. The schema includes tables for `Products`, `Wishlist`, `OrderItems`, `Category`, `Users`, and `Checkout`.
 
-![Database Schema Diagram](./media/db-bidera-Store.png)
+![Database Schema Diagram](./media/db-bidera-store.png)
 
 ### Models
 
@@ -402,6 +402,33 @@ The product page features an individual item, offering details like price, categ
 The "Bag" page on Bidera Store features a minimalist design where customers can review items they're purchasing. It details the product with an image, name, SKU, price, and a quantity selector with update and remove options. The subtotal is clearly listed alongside the total cost, including delivery, with a prompt for additional purchases to qualify for free delivery. Simple navigation links for "Keep Shopping" and "Secure Checkout" facilitate a smooth shopping experience.
 ![Bag Page](./media/desktop-bag.png)
 
+### Checkout page:
+The checkout page of Bidera Store is streamlined and user-focused, presenting a form for shipping details alongside an order summary. The summary pane displays product specifics, quantities, and totals, while the form requests essential information for order completion, all within a clean, navigable layout.
+![Checkout Page](./media/checkout%20page.png)
+
+### Profile Page:
+The profile page on Bidera Store is a user-centric dashboard where customers can update their default delivery information and view their order history. The layout is clean and functional, with fields for phone number, addresses, and location details, alongside a history table that summarizes past orders by number, date, items, and totals. The page simplifies user account management, emphasizing a smooth post-purchase experience.
+![Profile Page](./media/profile-page.png)
+
+### Product Management Page:
+The product management page on Bidera Store provides a straightforward interface for admins to add new products. Fields for category, SKU, name, description, quantity per kg, price, and rating are neatly arranged for easy data entry, with an option to upload an image. Actions to cancel or add the product are clearly visible, streamlining the product inventory process.
+![Product Management Page](./media/product-management.png)
+
+### Wishlist Page:
+The wishlist page on Bidera Store displays a curated collection of user-favored items, each with an image, name, description, and price. Shoppers can manage their preferences with 'Add to Bag' or 'Remove' options, streamlining the experience between wishful browsing and actual purchasing.
+![Wishlist Page](./media/desktop-wishlist.png)
+
+### Add to Bag:
+Upon adding an item to their bag, users receive a notification confirming the action, along with a convenient link to the bag for a smooth transition to the checkout process.
+![Add to bag Page](./media/toast.png)
+
+### Sign Up
+The "Sign Up" page for Bidera Store offers a straightforward form where new users can create an account. It prompts for email confirmation, a chosen username, and a secure password, with fields for password verification to prevent errors. A link for existing users to sign in ensures ease of navigation for return shoppers. The page maintains the site's clean design and includes a footer inviting newsletter subscription and social media engagement.
+![Signup Page](./media/sign%20up.png)
+
+### Sign Out
+The "Sign Out" page of Bidera Store offers a simple, no-fuss interface, posing the straightforward question, "Are you sure you want to sign out?" Alongside options to either cancel or confirm the action, the page maintains a clean aesthetic, consistent with the site’s overall user-friendly design, ensuring a clear path whether staying logged in or leaving the session.
+![Signout Page](./media/desktop-signout.png)
 
 ### Wireframes
 
