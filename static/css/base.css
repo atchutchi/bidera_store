@@ -195,122 +195,51 @@ input[name='q']::placeholder {
   overflow-y: auto;
 }
 
-/* Newsletter form styling */
-.form-inline .form-group {
-  flex: 1;
+.bg-dark {
+  background-color: #343a40 !important; /* Você pode mudar para qualquer cor desejada */
 }
 
-footer {
-  flex-shrink: 0;
-}
-
-.form-inline .form-control {
-  width: 100%;
-}
-
-footer {
-  position: relative;
-  width: 100%;
-  margin-top: auto;
-}
-
-footer .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+.text-light {
+  color: #f8f9fa !important;
 }
 
 footer h5 {
   margin-bottom: 1rem;
   font-weight: bold;
-  font-size: 1.2rem;
 }
 
-footer .form-inline {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-footer .form-inline .form-group {
-  flex: 1;
-  margin-bottom: 1rem;
-}
-
-footer .form-inline .form-control {
-  width: 100%;
-  border-radius: 0.25rem;
-  padding: 0.5rem;
-}
-
-footer .form-inline .btn {
-  background-color: #fdba2d; /* Bright color for the button */
-  border: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-}
-
-footer .form-inline .btn:hover {
-  background-color: #e0a800;
-}
-
-footer a {
-  color: white;
+footer .social-icons a,
+footer .contact-info a {
+  color: #f8f9fa;
   transition: color 0.3s;
 }
 
-footer a:hover {
-  color: #ddd;
+footer .social-icons a:hover,
+footer .contact-info a:hover {
+  color: #adb5bd;
 }
 
-footer p {
-  font-size: 0.9rem;
+footer .social-icons i,
+footer .contact-info i {
+  font-size: 1.5rem; /* Ajuste o tamanho como preferir */
+  margin-right: 0.5rem;
 }
 
-footer .social-icons a {
-  font-size: 1.5rem; /* Larger font size for icons */
-  margin-right: 0.5rem; /* Space between icons */
-  transition: transform 0.3s;
-}
-
-footer .social-icons a:hover {
-  transform: scale(1.1); /* Scale effect on hover */
-}
-
-/* Mailchimp */
-#mc_embed_signup {
-  background: transparent;
-  font-family: 'Poppins', sans-serif;
-  color: white;
-}
-
-#mc_embed_signup form {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-#mc_embed_signup input[type="email"] {
-  background-color: rgba(255, 255, 255, 0.9);
-  border: 2px solid #fdba2d;
-  color: #000;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-
-#mc_embed_signup input[type="submit"] {
-  cursor: pointer;
-  font-weight: bold;
+/* Estilos específicos para a newsletter */
+#mc_embed_signup .form-control {
   border: none;
-  background-color: #fdba2d;
-  color: black;
-  padding: 0.5rem 1rem;
+  border-radius: 0;
+}
+
+#mc_embed_signup .btn-primary {
+  background-color: #fdba2d; /* Cor primária do botão */
+  border: none;
   transition: background-color 0.3s;
 }
 
-#mc_embed_signup input[type="submit"]:hover {
-  background-color: #e0a800;
+#mc_embed_signup .btn-primary:hover {
+  background-color: #e0a800; /* Cor do hover */
 }
-
 
 /* -------------------------------- Media Queries */
 
@@ -559,39 +488,12 @@ color: #17a2b8; /* text-info */
 }
 
 @media (max-width: 768px) {
-  footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  footer .row {
+      flex-direction: column;
+      align-items: center;
   }
 
-  footer .mc_embed_signup, 
-  footer .social-icons, 
-  footer .contact-info {
-    width: 100%;
-    margin: 0.5rem 0; 
-    text-align: center;
+  footer .col-md-4 {
+      margin-bottom: 1rem;
   }
-
-  
-  footer #mc_embed_signup .button {
-    width: 100%; 
-    margin-top: 0.5rem; 
-
-  
-  footer .social-icons a {
-    margin: 0.2rem; 
-    display: inline-block; 
-  }
-
-  footer .contact-info {
-    text-align: center;
-    margin-top: 0.5rem;
-  }
-}
-
-footer a:hover {
-  opacity: 0.8;
-  transition: opacity 0.3s ease-in-out;
-}
 }
