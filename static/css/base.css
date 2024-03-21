@@ -300,8 +300,8 @@ color: #17a2b8; /* text-info */
 }
 
 .py-4 {
-  padding-top: 10px !important; /* Reducing vertical padding for a thinner footer */
-  padding-bottom: 10px !important;
+  padding-top: 0px !important; /* Reducing vertical padding for a thinner footer */
+  padding-bottom: 0px !important;
 }
 
 .container {
