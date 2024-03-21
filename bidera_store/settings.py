@@ -29,7 +29,7 @@ SECRET_KEY = '2nvmv(++5&imqfy&s=68#9%(7y2l+z!%s75i=rk08+-==we&)6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'DEVELOPMENT' in os.environ
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     '8000-atchutchi-bidera-store-8n7q173fyo.us1.codeanyapp.com',

@@ -3,7 +3,7 @@
 ## Overview
 Welcome to Bidera Store, your one-stop online shop for fresh and high-quality food products ranging from vegetables, beef, pork, goat meat, seafood, rice, fish, and much more. Our platform is designed to provide a seamless and convenient shopping experience, allowing customers to purchase products by quantity and enjoy home delivery services.
 
-[Here is the live version of the project](#)
+[Here is the live version of the project](https://bidera-store-4f0dc6400eda.herokuapp.com/)
 
 ![Bidera Store Responsive Mockup](./static/assets/img/readme/bidera_store_mockup.png)
 
@@ -13,35 +13,102 @@ Welcome to Bidera Store, your one-stop online shop for fresh and high-quality fo
 Bidera Store aims to revolutionize the way people shop for food online by offering a wide selection of fresh products, customizable quantities, and efficient home delivery. Our goal is to ensure that every household has access to quality food products without the hassle of visiting physical stores.
 
 ## User Stories
-### USER STORY: Online Shopping
-As a **customer**, I can **browse through various food products** so that **I can select and purchase them online.**
 
-#### Acceptance Criteria
+### Newsletter Subscription
+As a **shopper** I can **subscribe to the newsletter** so that **I receive updates on new products, promotions, and other news related to the store.**
 
-- The platform must display a wide range of food products with detailed descriptions and prices.
-- Customers should be able to select the quantity of products they wish to purchase.
-- The shopping cart system must accurately reflect the items added by the customer.
+### Acceptance Criteria
+- Acceptance criteria 1: The subscription form should be easily accessible and visible on the homepage and other strategic locations across the website to encourage subscriptions.
+- Acceptance criteria 2: The user must be able to subscribe by simply entering their email address and clicking the subscribe button, without the need for creating an account or providing additional unnecessary information.
+- Acceptance criteria 3: Upon successful subscription, the user should receive immediate visual confirmation on the website and a welcome email confirming their subscription and outlining what type of content they can expect to receive.
 
-#### Tasks
 
-- [x] Implement a product listing page with categories and filters.
-- [x] Develop a dynamic shopping cart system.
-- [x] Create a secure checkout process.
+### Registration and User Accounts
+- As a **Site User** I can **EasilySign up with google authentication** so that i can **Avoid introducing a password and information details on regsitration**
 
-### USER STORY: Home Delivery
-As a **customer**, I can **choose home delivery for my orders** so that **I receive my purchases without leaving my home.**
+- As a **Site User** I can **Easily register for an account** so that **Have a personal account and be abble to view my profile**
 
-#### Acceptance Criteria
+- As a **Site User** I can **Easily login or logout** so that i can **Access my personal account information**
 
-- The platform must offer an option to choose home delivery during the checkout process.
-- Customers should be provided with estimated delivery times and tracking information.
-- The delivery service must cover a wide geographical area to accommodate various customers.
+- As a **Site User** I can **Easily recover my password in case i forgot it** so that i can **Recover access to my account**
 
-#### Tasks
+- As a **Site User** I can **Receive an email confirmation after registering** so that i can **Access my personal account information**
 
-- [x] Integrate a home delivery option in the checkout process.
-- [x] Partner with reliable delivery services.
-- [x] Implement a system to provide customers with delivery updates.
+- As a **Site User** I can **have a personalized user profile** so that i can **View my personal order history and order confirmations, and save my payment information**
+
+
+### Contact Story
+As a **User** I can **easily contact the store team through a form on the contact page** so that **I can ask questions, request information about products, seek support, or express my concerns quickly and directly**
+
+### Acceptance Criteria
+- Acceptance criteria 1: Easy access to the contact form: Users should easily find the contact option on the website, ideally from the main menu or footer on all pages.
+
+- Acceptance criteria 2: Intuitive contact form: The form should be clear and simple, asking for essential information like name, email, subject, and the message.
+
+- Acceptance criteria 3: Form validation: Before submission, the system should validate the information input by the user, such as the correct formatting of the email.
+
+- Acceptance criteria 4: Feedback after submission: After submitting, the user should receive feedback, either on the same page or via email, confirming that the message has been received.
+
+
+### Viewing and Navigation
+- As a **shopper** I can **easy view a list of products** so that i can **select some purchase**
+
+- As a **Shopper** I can **view individual product details** so that i can **Identify the price, description, product rating, product image**
+
+- As a **shopper** I can **Quickly identify deals, clearance items and special offers** so that i can  **take advantage of special savings on the products i'd like to purchase**
+
+- As a **shopper** I can **Easily view the total of my purchases at any time** so that i can **avoid spending too much**
+
+
+### Wishlist Feature
+As a **user** I can **add and remove products from my wishlist ** so that ** I can easily keep track of items I am interested in purchasing later.**
+
+### Acceptance Criteria
+
+- Acceptance criteria 1: As a registered user, when I navigate to a product detail page, I should see a heart icon indicating whether the product is already in my wishlist or not. If the product is not in the wishlist, clicking the heart icon should add the product to my wishlist, and the icon should change to reflect that it's been added.
+
+- Acceptance criteria 2: The wishlist feature should be accessible only to logged-in users. Users who are not logged in should be prompted to log in when trying to add a product to the wishlist or when attempting to access the wishlist page.
+
+- Acceptance criteria 3: As a registered user, I should be able to view my wishlist from a dedicated wishlist page.
+
+
+### Admin and Store Management
+- As a **Store Owner** I can **Add product** so that I can **Add new Items to my store**
+
+- As a **Store Owner** I can **Edit/update a product** so that I can **Change product prices, descriptions, images, and other product criteria**
+
+- As a **Store Owner** I can **Delete a product** so that I can **Remove items that are no longer for sale**
+
+
+### Purchasing and Checkout
+- As a **Shopper** I can **Easily select the quantity of a product when purchasing it** so that I can **Ensure i dont accidentally select the wrong product quantity**
+
+- As a **Shopper** I can **View Items in my bag to be purchased** so that I can **Identify the total cost of my purchase and all items I will receive**
+
+- As a **Shopper** I can **Adjust the quantity of my individual items in my bag** so that I can **Easily make changes to my purchase before checkout**
+
+- As a **Shopper** I can **Enter my payment information** so that I can **Checkout quickly and with no hassles**
+
+- As a **Shopper** I can **Feel my personal and payment is safe and secure** so that I can **Confidently provide the needed information to make a purchase**
+
+- As a **Shopper** I can **View and order confirmation after checkout** so that I can **verify that I haven't made any mistakes**
+
+- As a **Shopper** I can **Receive an email confirmation after checking out** so that I can **keep the confirmation of what I've purchased for my records**
+
+
+### Sorting and Seaching
+
+- As a **Shopper** I can **Sort the list of available products** so that i can **Easily identify the best rated, Best priced and categorically sorted products**
+
+- As a **Shopper** I can **Sort a specific category of product** so that i can **Find the best-priced or best-rated product in a specific category, or sort the products in that category by name**
+
+- As a **Shopper** I can **Sort multiple categories of products simultaneously** so that i can **find the best-priced or best rated products across broad categories, such as "fruits" or "meat"**
+
+- As a **Shopper** I can **Search a product by name or description** so that i can **Find a specific product i'd like to purchase**
+
+- As a **Shopper** I can **Easily see what I've  searched for and the number of results** so that i can **Quickly decide whether the product I want is available**
+
+
 
 ## Skeleton 
 
