@@ -195,51 +195,6 @@ input[name='q']::placeholder {
   overflow-y: auto;
 }
 
-.bg-dark {
-  background-color: #343a40 !important; /* Você pode mudar para qualquer cor desejada */
-}
-
-.text-light {
-  color: #f8f9fa !important;
-}
-
-footer h5 {
-  margin-bottom: 1rem;
-  font-weight: bold;
-}
-
-footer .social-icons a,
-footer .contact-info a {
-  color: #f8f9fa;
-  transition: color 0.3s;
-}
-
-footer .social-icons a:hover,
-footer .contact-info a:hover {
-  color: #adb5bd;
-}
-
-footer .social-icons i,
-footer .contact-info i {
-  font-size: 1.5rem; /* Ajuste o tamanho como preferir */
-  margin-right: 0.5rem;
-}
-
-/* Estilos específicos para a newsletter */
-#mc_embed_signup .form-control {
-  border: none;
-  border-radius: 0;
-}
-
-#mc_embed_signup .btn-primary {
-  background-color: #fdba2d; /* Cor primária do botão */
-  border: none;
-  transition: background-color 0.3s;
-}
-
-#mc_embed_signup .btn-primary:hover {
-  background-color: #e0a800; /* Cor do hover */
-}
 
 /* -------------------------------- Media Queries */
 
@@ -332,6 +287,59 @@ color: #17a2b8; /* text-info */
   border-color: #dc3545;
   border-radius: 0;
 }
+
+
+/* Footer */
+.bg-dark {
+  background-color: #000 !important;
+}
+
+.text-light {
+  color: #fff !important; 
+}
+
+.py-4 {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+.container {
+  max-width: 80% !important;
+}
+
+/* Newsletter and social media icons */
+.row.align-items-center {
+  flex-wrap: nowrap !important;
+  justify-content: space-around;
+}
+
+#mc_embed_signup, .social-icons {
+  flex: 1 !important;
+  margin-bottom: 0 !important;
+}
+
+.input-group {
+  margin-top: -0.5rem; 
+}
+
+.input-group .form-control {
+  border: 1px solid #fff; 
+  background-color: #333; 
+  color: #fff; 
+}
+
+.input-group-append .btn-primary {
+  background-color: #fdba2d; 
+  border-color: #fdba2d;
+}
+
+.social-icons a {
+  color: #fff; 
+  font-size: 1.5rem; 
+  margin-right: 15px; 
+}
+
+
 
 /* -------------------------------- Media Queries */
 
@@ -487,13 +495,25 @@ color: #17a2b8; /* text-info */
     }
 }
 
+/* fmall screens */
 @media (max-width: 768px) {
-  footer .row {
-      flex-direction: column;
-      align-items: center;
+  .row.align-items-center {
+      flex-wrap: wrap; /
   }
 
-  footer .col-md-4 {
-      margin-bottom: 1rem;
+  #mc_embed_signup, .social-icons {
+      flex: 0 0 100%; 
+      text-align: center; 
+      margin-top: 10px; 
   }
+
+  .input-group .form-control, .input-group-append .btn-primary {
+      width: 80%; 
+      margin: auto; 
+
+  .social-icons a {
+      font-size: 1.2rem; 
+      margin: 0 5px; 
+  }
+}
 }
