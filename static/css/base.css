@@ -354,6 +354,12 @@ color: #17a2b8; /* text-info */
   color: #000; /* Text color for better contrast */
 }
 
+.btn-primary:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+
 /* Social Media Icons Styles */
 .social-icons {
   text-align: right; /* Aligns the social icons to the right */
@@ -380,7 +386,7 @@ color: #17a2b8; /* text-info */
   clear: both;
   width: auto;
   display: block;
-  /* margin: 1em 0 1em 5%; */
+  margin: 0 !important;
 }
 
 
