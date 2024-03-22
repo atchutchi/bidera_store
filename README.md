@@ -1,7 +1,7 @@
 # Bidera Store
 
 ## Overview
-Welcome to Bidera Store, your one-stop online shop for fresh and high-quality food products ranging from vegetables, beef, pork, goat meat, seafood, rice, fish, and much more. Our platform is designed to provide a seamless and convenient shopping experience, allowing customers to purchase products by quantity and enjoy home delivery services.
+Welcome to Bidera Store, your one-stop online shop for fresh and high-quality food products ranging from vegetables, beef, pork, goat meat, seafood, rice, fish, and much more. "Bidera" is an expression in Kriolo from Guinea Bissau, referring to itinerant vendors who sell vegetables in the markets and streets of Bissau, embodying our commitment to bringing the vibrant and rich flavors of local produce right to your doorstep. Our platform is designed to provide a seamless and convenient shopping experience, allowing customers to purchase products by quantity and enjoy home delivery services.
 
 [Here is the live version of the project](https://bidera-store-4f0dc6400eda.herokuapp.com/)
 
