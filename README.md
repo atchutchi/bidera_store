@@ -378,6 +378,8 @@ class WishlistItem(models.Model):
 For the SEO marketing I used  the [XML-SITEMAPS](https://www.xml-sitemaps.com/details-bidera-store-4f0dc6400eda.herokuapp.com-74dddaa7b.html)
 ![Pro Site Maps](./media/sitemaps.png)
 
+[Page Report](https://pagespeed.web.dev/analysis/https-bidera-store-4f0dc6400eda-herokuapp-com/2qhxvd75wu?hl=en&form_factor=desktop)
+
 ## Feature
 
 ### Navigation - Home page:
