@@ -383,6 +383,34 @@ For the SEO marketing I used  the [XML-SITEMAPS](https://www.xml-sitemaps.com/de
 **Diagnose performance issues**
 ![PageSpeed Insight](./media/pagespeed-insight.png)
 
+## Social Media Presence
+
+Bidera Store has expanded its online presence beyond the main website to engage with our community and keep our customers informed about the latest products, special offers, and insights into our sustainable practices. Follow us on our social media platforms to stay up to date with all things Bidera Store.
+
+### Facebook
+
+Join our Facebook community to connect with other food enthusiasts, participate in exclusive contests, and get first access to our limited-time offers. Like and follow us on Facebook at [Bidera Store Facebook Page]([https://web.facebook.com/profile.php?id=61557205108337]).
+
+![Bidera Store Facebook Page](./media/facebook-page.png)
+
+### Instagram
+
+Follow us on Instagram [@bidera_store]([https://www.instagram.com/bidera_store/]) for daily inspiration with food styling, behind-the-scenes looks at our sourcing process, and featured stories from our satisfied customers. Don't forget to tag us in your culinary creations using our products for a chance to be featured on our page!
+
+![Bidera Store Instagram Page](./media/instagram-page.png)
+
+## Marketing Strategy
+
+Our marketing strategy is centered around building a strong relationship with our community through engaging content, educational resources, and interactive campaigns. Through our Facebook and Instagram pages, we aim to:
+
+- Showcase the quality and variety of our products through visually appealing content.
+- Educate our followers about the benefits of choosing fresh and high-quality food items.
+- Create a platform for customer feedback and testimonials to build trust with potential customers.
+- Promote a healthy and sustainable lifestyle that aligns with our brand values.
+
+By leveraging these social media platforms, Bidera Store aims to not only market our products but also to create a community of like-minded individuals who value quality, sustainability, and great food.
+
+
 
 ## Feature
 
