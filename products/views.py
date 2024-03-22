@@ -63,7 +63,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        'products_in_wishlist': products_in_wishlist,
+        'products_in_wishlist': products_in_wishlist, #new added
     }
 
     return render(request, 'products/products.html', context)
@@ -152,22 +152,31 @@ def delete_product(request, product_id):
     messages.success(request, 'Product deleted!')
     return redirect(reverse('products'))
 
-
+#new added
 @login_required
 def add_to_wishlist(request, product_id):
-    """View para adicionar um produto à lista de desejos"""
+    """View to add a product to the wishlist."""
+    # Fetch the product using its ID, or return a 404 error if not found
     product = get_object_or_404(Product, pk=product_id)
+    # Create a WishlistItem for the current user and the fetched product
     WishlistItem.objects.create(user=request.user, product=product)
-    messages.success(request, 'Produto adicionado à lista de desejos!')
+    # Display a success message to the user
+    messages.success(request, 'Product added to your wishlist!')
+    # Redirect the user back to the product detail page
     return redirect(reverse('product_detail', args=[product_id]))
 
 
 @login_required
 def remove_from_wishlist(request, product_id):
-    """View para remover um produto da lista de desejos"""
+    """View to remove a product from the wishlist."""
+    # Fetch the product or return a 404 error if it doesn't exist
     product = get_object_or_404(Product, pk=product_id)
+    # Filter the wishlist item for the current user and the specified product
     wishlist_item = WishlistItem.objects.filter(
         user=request.user, product=product)
+    # Delete the filtered wishlist item(s)
     wishlist_item.delete()
-    messages.success(request, 'Produto removido da lista de desejos.')
+    # Show a success message to the user
+    messages.success(request, 'Product removed from your wishlist.')
+    # Redirect the user back to the product detail page
     return redirect(reverse('product_detail', args=[product_id]))
