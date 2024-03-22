@@ -512,34 +512,6 @@ The error was due to incorrect usage of URL namespacing in the template. The app
 {% endif %}
 ```
 
-## Unsolved Error
-
-While updating our email settings to enable real email confirmations, we ran into an unexpected error related to SMTP configuration. This error mentions an unexpected keyword argument keyfile and has been challenging to resolve quickly.
-
-Please note that this does not affect the functionality of the contact form; submissions are still successfully saved in the admin backend. We're planning to address this in future updates and appreciate your understanding.
-
-**TypeError at /contact/:**
-```h
-
-SMTP.starttls() got an unexpected keyword argument 'keyfile'
-Request Method:	POST
-Request URL:	https://bidera-store-4f0dc6400eda.herokuapp.com/contact/
-Django Version:	3.2.24
-Exception Type:	TypeError
-Exception Value:	
-SMTP.starttls() got an unexpected keyword argument 'keyfile'
-Exception Location:	/app/.heroku/python/lib/python3.12/site-packages/django/core/mail/backends/smtp.py, line 67, in open
-Python Executable:	/app/.heroku/python/bin/python
-Python Version:	3.12.2
-Python Path:	
-['/app/.heroku/python/bin',
- '/app',
- '/app/.heroku/python/lib/python312.zip',
- '/app/.heroku/python/lib/python3.12',
- '/app/.heroku/python/lib/python3.12/lib-dynload',
- '/app/.heroku/python/lib/python3.12/site-packages']
-Server time:	Fri, 22 Mar 2024 06:50:05 +0000
-```
 
 ## Future Development
 
