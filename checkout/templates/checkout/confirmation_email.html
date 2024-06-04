@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Thank you for your order!</h1>
+    <p>Order Number: {{ order.order_number }}</p>
+    <p>We are currently processing your order and will notify you once it has been shipped.</p>
+    <p>Thank you for shopping with us!</p>
+{% endblock %}

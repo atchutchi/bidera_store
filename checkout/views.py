@@ -3,6 +3,8 @@ from django.shortcuts import (
     )
 from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 from django.conf import settings
 
 from .forms import OrderForm
@@ -15,6 +17,18 @@ from bag.contexts import bag_contents
 
 import stripe
 import json
+
+
+def send_confirmation_email(order):
+    subject = f'Order Confirmation - {order.order_number}'
+    message = render_to_string('checkout/confirmation_email.html', {'order': order})
+    send_mail(
+        subject,
+        message,
+        settings.DEFAULT_FROM_EMAIL,
+        [order.email],
+        fail_silently=False,
+    )
 
 
 @require_POST
@@ -79,6 +93,7 @@ def checkout(request):
 
             # Save the info to the user's profile if all is well
             request.session['save_info'] = 'save-info' in request.POST
+            send_confirmation_email(order) #send confirmation email
             return redirect(
                 reverse('checkout_success', args=[order.order_number])
             )
