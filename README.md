@@ -478,6 +478,41 @@ The wireframe used was based on the Code institute Boutique Ado course project, 
 
 ### Resolving NoReverseMatch Error for 'wishlist'
 
+### Resolving The db.sqlite3 file is missing
+
+**Problem Description:**  
+The db.sqlite3 file was missing after gitpod delete the workspace, causing your Django project to prompt for new migrations and lose data. **The error "You have 32 unapplied migration(s)**" occurs when running the server.
+Was need to recreate the database, apply the necessary migrations, and ensure the project continues to work without data loss.
+
+**Solution:**  
+- Create a Backup of the Current Database on Heroku
+```python
+
+heroku pg:backups:capture --app bidera-store
+
+```
+- Download the backup:
+```python
+
+heroku pg:backups:download --app bidera-store
+
+```
+- Recreate the Local SQLite Database
+- Delete the existing (empty) db.sqlite3 file
+- Update settings.py to Use PostgreSQL Locally (Temporary)
+Ensure DATABASES setting in settings.py points to a local PostgreSQL database
+```python
+
+DATABASES = {
+    'default': dj_database_url.parse('postgres://username----------')
+}
+```
+
+- Then Apply all migrations locally
+- Create Superuser and Verify Local Setup
+- Run the server and verify the setup:
+
+
 **Problem Description:**  
 The application threw a NoReverseMatch error stating "Reverse for 'wishlist' not found. 'wishlist' is not a valid view function or pattern name." This error indicates that Django's URL dispatcher is unable to find a URL pattern named 'wishlist', critical for rendering the wishlist page or functionality within the application.
 
