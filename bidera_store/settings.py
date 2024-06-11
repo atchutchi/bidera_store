@@ -35,10 +35,15 @@ DEBUG = True
 
 
 ALLOWED_HOSTS = [
-    '8000-atchutchi-biderastore-zc26mwp5a9l.ws-eu114.gitpod.io',
+    '8000-atchutchi-biderastore-izc1d8stwl6.ws-eu114.gitpod.io',
     'bidera-store-4f0dc6400eda.herokuapp.com',
     'localhost',
     ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-atchutchi-biderastore-izc1d8stwl6.ws-eu114.gitpod.io',
+    'https://bidera-store-4f0dc6400eda.herokuapp.com',
+]
 
 
 # Application definition
@@ -77,6 +82,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'bidera_store.urls'
@@ -123,9 +129,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 
-LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
-
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
@@ -240,13 +244,20 @@ STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
 
-# DEFAULT_FROM_EMAIL = 'biderastore@gmail.com'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'biderastore@example.com'
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
