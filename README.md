@@ -547,6 +547,20 @@ The error was due to incorrect usage of URL namespacing in the template. The app
 {% endif %}
 ```
 
+### Resolving Email Verification Issue
+
+**Problem:**
+I encountered an issue where the email verification was not being sent to the real email addresses. 
+
+**Solution:**
+After consulting a tutor session from Code Institute, I followed these steps to resolve the issue:
+- Update the Django and django-allauth Versions
+- Install the Updated Dependencies with pip install -r requirements.txt
+- Create and Migrate the Database
+- Ensure Email Configuration was well setup on settings
+- Specify the Python version by creating a runtime.txt file: python-3.9.19
+
+
 
 ## Future Development
 
