@@ -348,13 +348,13 @@ color: #17a2b8; /* text-info */
 }
 
 .btn-primary {
-  background-color: #fdba2d; /* Harmonizing with logo-highlight color */
-  border-color: #fdba2d; /* Ensuring border color matches */
+  background-color: #fdba2d !important; /* Harmonizing with logo-highlight color */
+  border-color: #fdba2d !important; /* Ensuring border color matches */
   color: #000; /* Text color for better contrast */
 }
 
 .btn-primary:hover {
-  background-color: #e0a800;
+  background-color: #e0a800 !important;
   border-color: #e0a800;
 }
 
